@@ -5,7 +5,7 @@
   }
 </style>
 
-<form action="" method="post">
+<form action="" method="post" class="data_form">
   <fieldset class="show">
     <label for="name">Select Activity:</label>
     <select class="dynamic" name="table_type">
@@ -38,12 +38,6 @@
   </fieldset>
 
   <fieldset class="Citibikes">
-    <label for="name">Name:</label>
-    <input type="text" name="name" />
-
-    <label for="category">Category:</label>
-    <input type="text" name="category" />
-
     <label for="start">Start:</label>
     <input type="text" name="start" />
 
@@ -111,8 +105,8 @@
     <label for="length">Length:</label>
     <input type="text" name="length" />
 
-    <label for="genre">Genre:</label>
-    <input type="text" name="genre" />
+    <label for="category">Category:</label>
+    <input type="text" name="category" />
   </fieldset>
 
   <fieldset class="Runs">
@@ -168,6 +162,7 @@
   $(".Books,.Checkins,.Citibikes,.Cities,.Coffees,.Flights,.Mta,.Netflixes,.Runs,.Sales,.Ubers").hide()
   $(".dynamic").on("change", function() {
     var table = $("." + $(this).val());
+    $(".data_form").attr("action", "/data/" + $(this).val() + "/new");
     table.siblings().hide();
     $(".show").show();
     table.show();

@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
     length: DataTypes.STRING,
     show: DataTypes.BOOLEAN,
     episode_count: DataTypes.STRING,
-    genre: DataTypes.STRING
+    category: DataTypes.STRING
   });
 
   return Netflix;
