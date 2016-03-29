@@ -1,26 +1,17 @@
 var express = require('express');
 var router = express.Router();
 var models = require("../models");
-var Sequelize = require('sequelize');
-var env       = process.env.NODE_ENV || 'development';
-var config    = require(__dirname + '/../config/config.json')[env];
-var db        = {};
 
-if (config.use_env_variable) {
-  var sequelize = new Sequelize(process.env[config.use_env_variable]);
-} else {
-  var sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
-
-if(!process.env.FSCLIENTID) {
-    var keys = require("../config/api.js");
+if(!process.env.FSCLIENTID){
+  console.log('process env for fs creds not wqorking')
+  var config = require(__dirname + '/../config/api.js');
 }
 
 var foursquareConfig = {
   'secrets': {
     'clientId': process.env.FSCLIENTID,
     'clientSecret': process.env.FSCLIENTSECRET,
-    'redirectUrl': process.env.FSREDIRECT
+    'redirectUrl': process.env.FSREDIRECTURL
   }
 };
 
@@ -29,7 +20,7 @@ var foursquareAccessToken = process.env.FSACCESSTOKEN;
 
 router.get('/new', function(req, res, next) {
   // form to add manually
-  sequelize.query("SELECT table_name FROM information_schema.tables WHERE table_schema='public'AND table_type='BASE TABLE';").then(function(tables) {
+  models.sequelize.query("SELECT table_name FROM information_schema.tables WHERE table_schema='public'AND table_type='BASE TABLE';").then(function(tables) {
     tables.splice(0, 1);
     res.render('data/new', {tables: tables});
   })

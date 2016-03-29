@@ -4,14 +4,18 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var env       = process.env.NODE_ENV || "development";
 var routes = require('./routes/index');
 var data = require('./routes/data');
+var debug = require('debug')('app4');
 
 
 var pg = require('pg');
-var conString = 'postgres://alinaguzman@localhost/alinaguzman';
-
+var conString = process.env.DATABASE_URL;
+if (env != 'production') {
+  var config    = require(__dirname + '/config/config.json')[env];
+  conString = 'postgres://' + (config.username || 'postgres') + '@' + (config.host || 'localhost') + ':' + (config.port || 5432) + '/' + config.database;
+}
 //this initializes a connection pool
 //it will keep idle connections open for a (configurable) 30 seconds
 //and set a limit of 20 (also configurable)
@@ -83,4 +87,8 @@ app.use(function(err, req, res, next) {
 });
 
 
-module.exports = app;
+app.set('port', process.env.PORT || 3000);
+
+var server = app.listen(app.get('port'), function() {
+  debug('Express server listening on port ' + server.address().port);
+});
