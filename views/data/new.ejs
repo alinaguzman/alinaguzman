@@ -70,6 +70,17 @@
     <input type="text" name="length" />
   </fieldset>
 
+  <fieldset class="Gyms">
+    <label for="name">Name:</label>
+    <input type="text" name="name" />
+
+    <label for="category">Category:</label>
+    <input type="text" name="category" />
+
+    <label for="studio">Studio:</label>
+    <input type="text" name="studio" />
+  </fieldset>
+
   <fieldset class="Flights">
     <label for="airline">Airline:</label>
     <input type="text" name="airline" />
@@ -159,7 +170,7 @@
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
 <script>
-  $(".Books,.Checkins,.Citibikes,.Cities,.Coffees,.Flights,.Mta,.Netflixes,.Runs,.Sales,.Ubers").hide()
+  $(".Books,.Checkins,.Citibikes,.Cities,.Coffees,.Flights,.Mta,.Netflixes,.Runs,.Sales,.Ubers,.Gyms").hide();
   $(".dynamic").on("change", function() {
     var table = $("." + $(this).val());
     $(".data_form").attr("action", "/data/" + $(this).val() + "/new");

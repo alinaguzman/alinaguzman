@@ -1,8 +1,191 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@import url(http://fonts.googleapis.com/css?family=Josefin+Slab);
+@import url(http://fonts.googleapis.com/css?family=Anaheim);
+
+html, body {
+    margin: 0;
+    padding: 0;
 }
 
-a {
-  color: #00B7FF;
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding-top: 90vh;
+}
+
+p {
+    font-family: 'Anaheim', sans-serif;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Josefin Slab', serif;
+    font-size: 2em;
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Josefin Slab', serif;
+    font-size: 1.5em;
+    text-align: center;
+
+}
+
+h3 {
+    font-family: 'Josefin Slab', serif;
+    font-size: 1.3em;
+    text-align: center;
+
+}
+
+
+header {
+    z-index: -1;
+    background: url('../images/imagehome.jpg')  ;
+    background-repeat: no-repeat;
+    background-position: 0, -125px, 0;
+    height: 100vh;
+    width: 100%;
+    background-size: 100% auto;
+    position: relative;
+}
+.nav,
+.main {
+    position: relative;
+}
+.nav {
+    background: #323232;
+    height: 80px;
+    z-index: 150;
+    margin-bottom: -80px;
+}
+
+.nav div {
+    padding-top: 2%;
+}
+
+.nav a {
+    padding-left: 15%;
+    text-decoration: none;
+    font-size: 1.3em;
+    color: #999;
+    font-family: 'Anaheim', sans-serif;
+}
+
+.nav a:hover {
+    color: #f66666;
+}
+
+header,
+.nav-scrolled {
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+.main {
+    background: rgba(255,255,255,0.9);
+    padding: 90px 30px 30px;
+    column-count: 2;
+    column-gap: 40px;
+}
+
+
+#homeimage {
+
+
+
+}
+
+.overlay {
+
+}
+
+.overlay h1 {
+    font-size: 3em;
+    color: #444;
+    text-align: left;
+    margin-left: 20px;
+}
+
+#work, #blog, #contact {
+    height: 100vh;
+    width: 100%;
+}
+
+.work-box, .blog-box, .contact-box {
+    background: rgba(255,255,255,0.9);
+}
+
+#work {
+    background: url('../images/imagework.jpg')  ;
+    background-repeat: no-repeat;
+    background-position: 0, -125px, 0;
+    background-attachment: fixed;
+    background-size: 100% auto;
+    position: relative;
+}
+
+.work-box {
+    height: 300px;
+    width: 100%;
+    padding: 90px 30px 30px;
+}
+
+#blog {
+    background: url('../images/imageblog.jpg')  ;
+    background-repeat: no-repeat;
+    background-position: 0, -125px, 0;
+    background-attachment: fixed;
+    background-size: 100% auto;
+    position: relative;
+}
+
+.blog-box {
+    height: 300px;
+    padding: 90px 30px 30px;
+}
+
+#contact {
+    background: url('../images/imagecontact.jpg')  ;
+    background-repeat: no-repeat;
+    background-position: 0, -125px, 0;
+    background-attachment: fixed;
+    background-size: 100% auto;
+    position: relative;
+}
+
+.contact-box {
+    height: 300px;
+    padding: 90px 30px 30px;
+    margin-bottom: -20px;
+}
+
+
+/*footer*/
+
+#footer {
+    background-color: #111;
+    height: 90px;
+    text-align: center;
+    z-index: 99999;
+}
+
+#footer p{
+    padding-top: 30px;
+    padding-left: 40px;
+    font-family: 'Anaheim',sans-serif;
+    color: #999;
+    font-size: 1.2em;
+}
+
+#footer a{
+    text-decoration: none;
+    color: #f66666;
+}
+
+#footer a:hover{
+    color: #f4f4f4;
+    border-bottom: 2px solid #f4f4f4;
 }

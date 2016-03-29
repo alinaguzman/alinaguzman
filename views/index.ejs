@@ -1,1 +1,69 @@
-Alina Guzman
+<link rel="stylesheet" href="/stylesheets/style.css">
+
+<header>
+  <div id="homeimage">
+    <div class="overlay">
+      <h1>Alina Guzman</h1>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <div>
+    <a href="#">Nav Link 1</a>
+    <a href="#">Nav Link 2</a>
+    <a href="#">Nav Link 3</a>
+    <a href="#">Nav Link 4</a>
+  </div>
+</nav>
+
+<div class="main">
+  <p>When I'm not repping Brooklyn I'm writing code or getting compliments on my nails. Ask me about my two cats or when my next half marathon is. Playing into my Ukrainian roots with weekly Banya trips and beverage selections.</p>
+</div>
+
+<div id="work">
+
+
+</div>
+
+<div class="work-box">
+        <h1>work box</h1>
+</div>
+
+<div id="blog">
+
+</div>
+
+<div class="blog-box">
+  <h1>blog box</h1>
+
+</div>
+
+<div id="contact">
+
+</div>
+<div class="contact-box">
+  <h1>contact box</h1>
+
+
+</div>
+<div id="footer">
+  <p>Created by <a href="http://alinaguzman.com">Alina Guzman</a></p>
+</div>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+
+<script>
+  var  mn = $(".nav");
+  mns = "nav-scrolled";
+  hdr = $('header').height();
+
+  $(window).scroll(function() {
+    if( $(this).scrollTop() > hdr ) {
+      mn.addClass(mns);
+    } else {
+      mn.removeClass(mns);
+    }
+  });
+</script>
+

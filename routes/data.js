@@ -92,6 +92,17 @@ router.post("/Flights/new", function(req, res) {
     })
 });
 
+router.post("/Gyms/new", function(req, res) {
+  var json_object = JSON.stringify(req.body);
+
+  models.Gym.findOrCreate({where: { data: json_object,sub_data:json_object , studio: req.body.studio, category: req.body.category, name: req.body.name}})
+    .spread(function(data, created) {
+      if(created){
+        res.redirect('back')
+      }
+    })
+});
+
 router.post("/Mta/new", function(req, res) {
   var json_object = JSON.stringify(req.body);
 
