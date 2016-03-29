@@ -1,16 +1,180 @@
+<style>
+  fieldset {
+    border: 0;
+    padding: 0;
+  }
+</style>
+
 <form action="" method="post">
+  <fieldset class="show">
+    <label for="name">Select Activity:</label>
+    <select class="dynamic" name="table_type">
+      <option value="">Select</option>
+      <% tables.forEach(function(table){ %>
+      <option value="<%= table %>"><%= table %></option>
+      <% }) %>
+    </select>
+  </fieldset>
+  <fieldset class="Books">
     <label for="name">Name:</label>
-    <input type="text" id="name" name="name" placeholder="Enter your full name" />
-    <br />
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" placeholder="Enter your email address" />
-    <br />
-  <select class="dynamic" name="table_type">
-    <option value="">Select</option>
-    <option value="one">Activity One</option>
-    <option value="two">Activity Two</option>
-    <option value="three">Activity Three</option>
-  </select>
-    <br />
-    <input type="submit" value="Create Profile" />
+    <input type="text" name="name" />
+
+    <label for="category">Category:</label>
+    <input type="text" name="category" />
+
+    <label for="author">Author:</label>
+    <input type="text" name="author" />
+
+    <label for="length">Length:</label>
+    <input type="text" name="length" />
+  </fieldset>
+
+  <fieldset class="Checkins">
+    <label for="name">Name:</label>
+    <input type="text" name="name" />
+
+    <label for="category">Category:</label>
+    <input type="text" name="category" />
+  </fieldset>
+
+  <fieldset class="Citibikes">
+    <label for="name">Name:</label>
+    <input type="text" name="name" />
+
+    <label for="category">Category:</label>
+    <input type="text" name="category" />
+
+    <label for="start">Start:</label>
+    <input type="text" name="start" />
+
+    <label for="end">End:</label>
+    <input type="text" name="end" />
+
+    <label for="length">Length:</label>
+    <input type="text" name="length" />
+  </fieldset>
+
+  <fieldset class="Cities">
+    <label for="name">Name:</label>
+    <input type="text" name="name" />
+
+    <label for="state">State:</label>
+    <input type="text" name="state" />
+
+    <label for="length">Length:</label>
+    <input type="text" name="length" />
+  </fieldset>
+
+  <fieldset class="Coffees">
+    <label for="name">Name:</label>
+    <input type="text" name="name" />
+
+    <label for="time">Time:</label>
+    <input type="text" name="time" />
+
+    <label for="length">Length:</label>
+    <input type="text" name="length" />
+  </fieldset>
+
+  <fieldset class="Flights">
+    <label for="airline">Airline:</label>
+    <input type="text" name="airline" />
+
+    <label for="arrive">Arrive:</label>
+    <input type="text" name="arrive" />
+
+    <label for="depart">Depart:</label>
+    <input type="text" name="depart" />
+
+    <label for="length">Length:</label>
+    <input type="text" name="length" />
+
+    <label for="price">Price:</label>
+    <input type="text" name="price" />
+  </fieldset>
+
+  <fieldset class="Mta">
+    <label for="price">Price:</label>
+    <input type="text" name="price" />
+  </fieldset>
+
+  <fieldset class="Netflixes">
+    <label for="title">Title:</label>
+    <input type="text" name="title" />
+
+    <label for="show">Show:</label>
+    <input type="text" name="show" />
+
+    <label for="episode_count">Episode count:</label>
+    <input type="text" name="episode_count" />
+
+    <label for="length">Length:</label>
+    <input type="text" name="length" />
+
+    <label for="genre">Genre:</label>
+    <input type="text" name="genre" />
+  </fieldset>
+
+  <fieldset class="Runs">
+    <label for="title">Title:</label>
+    <input type="text" name="title" />
+
+    <label for="distance">Distance:</label>
+    <input type="text" name="distance" />
+
+    <label for="pace">Pace:</label>
+    <input type="text" name="pace" />
+
+    <label for="time">Time:</label>
+    <input type="text" name="time" />
+
+    <label for="race">Race:</label>
+    <input type="text" name="race" />
+  </fieldset>
+
+  <fieldset class="Sales">
+    <label for="title">Title:</label>
+    <input type="text" name="title" />
+
+    <label for="app">App:</label>
+    <input type="text" name="app" />
+
+    <label for="price">Price:</label>
+    <input type="text" name="price" />
+  </fieldset>
+
+  <fieldset class="Ubers">
+
+    <label for="start">Start:</label>
+    <input type="text" name="start" />
+
+    <label for="end">End:</label>
+    <input type="text" name="end" />
+
+    <label for="length">Length:</label>
+    <input type="text" name="length" />
+
+    <label for="price">Price:</label>
+    <input type="text" name="price" />
+  </fieldset>
+
+  <br />
+  <input class="show" type="submit" value="Submit manual entry" />
 </form>
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<script>
+  $(".Books,.Checkins,.Citibikes,.Cities,.Coffees,.Flights,.Mta,.Netflixes,.Runs,.Sales,.Ubers").hide()
+  $(".dynamic").on("change", function() {
+    var table = $("." + $(this).val());
+    table.siblings().hide();
+    $(".show").show();
+    table.show();
+  });
+
+  $('form').submit(function() {
+    $(':input', this).each(function() {
+      this.disabled = !($(this).val());
+    });
+  });</script>

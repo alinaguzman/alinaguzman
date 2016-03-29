@@ -2,8 +2,16 @@ var express = require('express');
 var router = express.Router();
 var keys = require('../config/api');
 var models = require("../models");
-var querystring = require('querystring');
+var Sequelize = require('sequelize');
+var env       = process.env.NODE_ENV || 'development';
+var config    = require(__dirname + '/../config/config.json')[env];
+var db        = {};
 
+if (config.use_env_variable) {
+  var sequelize = new Sequelize(process.env[config.use_env_variable]);
+} else {
+  var sequelize = new Sequelize(config.database, config.username, config.password, config);
+}
 var fourquareConfig = {
   'secrets' : {
     'clientId' : keys.foursquare.clientId,
@@ -17,11 +25,13 @@ var foursquareAccessToken = keys.foursquare.accessToken;
 
 router.get('/new', function(req, res, next) {
   // form to add manually
-  res.render('data/new');
+  sequelize.query("SELECT table_name FROM information_schema.tables WHERE table_schema='public'AND table_type='BASE TABLE';").then(function(tables) {
+    tables.splice(0, 1);
+    res.render('data/new', {tables: tables});
+  })
 });
 
 router.post("/new", function(req, res) {
-  console.log(req.body.name);
   res.send('OK')
 
 });
