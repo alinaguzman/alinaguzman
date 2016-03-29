@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var keys = require('../config/api');
 var models = require("../models");
 var Sequelize = require('sequelize');
 var env       = process.env.NODE_ENV || 'development';
@@ -12,16 +11,21 @@ if (config.use_env_variable) {
 } else {
   var sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
-var fourquareConfig = {
-  'secrets' : {
-    'clientId' : keys.foursquare.clientId,
-    'clientSecret' : keys.foursquare.clientSecret,
-    'redirectUrl' : keys.foursquare.redirectUrl
+
+if(!process.env.FSCLIENTID) {
+    var keys = require("../config/api.js");
+}
+
+var foursquareConfig = {
+  'secrets': {
+    'clientId': process.env.FSCLIENTID,
+    'clientSecret': process.env.FSCLIENTSECRET,
+    'redirectUrl': process.env.FSREDIRECT
   }
 };
 
-var foursquare = require('node-foursquare')(fourquareConfig);
-var foursquareAccessToken = keys.foursquare.accessToken;
+var foursquare = require('node-foursquare')(foursquareConfig);
+var foursquareAccessToken = process.env.FSACCESSTOKEN;
 
 router.get('/new', function(req, res, next) {
   // form to add manually
