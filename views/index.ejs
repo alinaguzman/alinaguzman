@@ -3,17 +3,19 @@
 <header>
   <div id="homeimage">
     <div class="overlay">
-      <h1>Alina Guzman</h1>
+      <div class="home-box">
+        <h1>ALINA GUZMAN</h1>
+        <h2>SOFTWARE ENGINEER</h2>
+      </div>
     </div>
   </div>
 </header>
 
 <nav class="nav">
   <div>
-    <a href="#">Nav Link 1</a>
-    <a href="#">Nav Link 2</a>
-    <a href="#">Nav Link 3</a>
-    <a href="#">Nav Link 4</a>
+    <a href="#">Projects</a>
+    <a href="#">Blog</a>
+    <a href="#">Contact</a>
   </div>
 </nav>
 
@@ -22,12 +24,19 @@
 </div>
 
 <div id="work">
-
-
 </div>
 
 <div class="work-box">
-        <h1>work box</h1>
+  <h1>Projects</h1>
+  <div class="project-kick">
+  </div>
+
+  <div class="cgn">
+  </div>
+
+  <div class="interior">
+  </div>
+
 </div>
 
 <div id="blog">
@@ -57,12 +66,16 @@
   var  mn = $(".nav");
   mns = "nav-scrolled";
   hdr = $('header').height();
+  hide = "hideheader"
 
   $(window).scroll(function() {
     if( $(this).scrollTop() > hdr ) {
       mn.addClass(mns);
+      $('header').addClass(hide)
     } else {
       mn.removeClass(mns);
+      $('header').removeClass(hide)
+
     }
   });
 </script>
