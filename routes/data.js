@@ -3,7 +3,6 @@ var router = express.Router();
 var models = require("../models");
 
 if(!process.env.FSCLIENTID){
-  console.log('process env for fs creds not wqorking')
   var config = require(__dirname + '/../config/api.js');
 }
 
