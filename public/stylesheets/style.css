@@ -13,35 +13,27 @@ html, body {
 body {
     margin: 0;
     padding-top: 90vh;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
 }
 
 p {
-    font-family: 'Anaheim', sans-serif;
-    font-weight: 300;
-    text-align: center;
+    font-weight: 900;
+    font-size: 1.2em;
 }
 
 h1 {
-    font-family: 'Lato', sans-serif;
     font-weight: 100;
     font-size: 2em;
-    text-align: center;
 }
 
 h2 {
-    font-family: 'Lato', sans-serif;
     font-size: 1.5em;
-    text-align: center;
-
 }
 
 h3 {
-    font-family: 'Josefin Slab', serif;
     font-size: 1.3em;
-    text-align: center;
-
 }
-
 
 header {
     z-index: -1;
@@ -70,11 +62,10 @@ header {
 }
 
 .nav a {
-    padding-left: 15%;
+    padding: 0 10%;
     text-decoration: none;
-    font-size: 1.3em;
+    font-size: 1.4em;
     color: #999;
-    font-family: 'Anaheim', sans-serif;
 }
 
 .nav a:hover {
@@ -92,10 +83,11 @@ header {
 }
 
 .main {
-    background: rgba(255,255,255,0.9);
-    padding: 90px 30px 30px;
-    column-count: 2;
-    column-gap: 40px;
+    background: #323232;
+    padding: 65px;
+    color: #999;
+    text-align: center;
+    height: 200px;
 }
 
 .overlay {
@@ -104,6 +96,22 @@ header {
     width: 100%;
     position: fixed;
     top: 0;
+}
+
+.about-box {
+    width: 550px;
+    margin: auto;
+    text-align: center;
+}
+
+.about-box a {
+    text-decoration: dashed;
+    color: #f66666;
+}
+
+.about-box a:hover {
+    text-decoration: dotted;
+    color: #999;
 }
 
 .home-box h1 {
@@ -172,13 +180,54 @@ header {
 }
 
 .contact-box {
-    height: 300px;
+    margin: auto;
+    height: 175px;
+    width: 400px;
     padding: 90px 30px 30px;
     margin-bottom: -20px;
+    text-align: center;
+}
+
+.email {
+    font-weight: 900;
+    text-decoration: none;
+    text-align: center;
+    color: #f66666;
+    margin-top: -15px;
+
+}
+.email:hover {
+    text-decoration: dashed;
+}
+
+.icons {
+    margin: auto;
+    text-align: center;
+    margin-top: 15px;
+}
+.icon {
+    display: inline-block;
+    background-size: 80%;
+    height: 45px;
+    width: 45px;
+}
+
+.icon a {
+    text-decoration: none;
+}
+
+.icon img {
+    background-size: 80%;
+    width: 80%;
+}
+
+.icon:hover {
+    opacity: .5;
 }
 
 
-.work-box h1 {
+
+.work-box h1, .contact-box h1 {
     margin-top: -70px;
 }
 .project-kick, .cgn, .interior {
@@ -192,7 +241,6 @@ header {
 }
 
 .project-kick {
-    margin-left: -80px;
 }
 
 .cgn {
@@ -239,3 +287,5 @@ header {
     color: #f4f4f4;
     border-bottom: 2px solid #f4f4f4;
 }
+
+

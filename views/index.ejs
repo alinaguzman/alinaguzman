@@ -13,14 +13,16 @@
 
 <nav class="nav">
   <div>
-    <a href="#">Projects</a>
-    <a href="#">Blog</a>
-    <a href="#">Contact</a>
+    <a href="#work">Projects</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">Contact</a>
   </div>
 </nav>
 
 <div class="main">
-  <p>When I'm not repping Brooklyn I'm writing code or getting compliments on my nails. Ask me about my two cats or when my next half marathon is. Playing into my Ukrainian roots with weekly Banya trips and beverage selections.</p>
+  <div class="about-box">
+    <p>When I'm not repping Brooklyn I'm writing code or <a href="https://www.instagram.com/bklynails" target="_blank">getting compliments on my nails</a>. Ask me about my <a href="https://www.instagram.com/p/9cFPRKjHd_/" target="_blank">two</a> <a href="https://www.instagram.com/p/-AEVw1jHaM/" target="_blank">cats</a> or when my next <a href="https://www.instagram.com/p/BDBSb3uDHTb/?taken-by=alinochkaa" target="_blank">half marathon</a> is. Playing into my <a href="https://www.instagram.com/p/2PEISUDHWN/">Ukrainian</a> roots with weekly <a href="https://www.instagram.com/p/-FMUz8jHdg/?taken-by=alinochkaa" target="_blank">banya</a> trips and <a href="https://www.instagram.com/p/292rXnjHV-/?taken-by=alinochkaa" target="_blank">beverage</a> selections.</p>
+  </div>
 </div>
 
 <div id="work">
@@ -52,7 +54,38 @@
 
 </div>
 <div class="contact-box">
-  <h1>contact box</h1>
+  <h1>Contact</h1>
+
+  <a class="email" href="mailto:alina.e.guzman@gmail.com">alina.e.guzman@gmail.com</a>
+
+  <div class="icons">
+    <div class="icon">
+      <a href="https://github.com/alinaguzman" target="_blank">
+        <img src="/images/github.png"></a>
+    </div>
+
+    <div class="icon">
+      <a href="http://www.linkedin.com/in/alinaguzman" target="_blank">
+        <img src="/images/linkedin.png"></a>
+    </div>
+
+    <div class="icon">
+      <a href="http://twitter.com/alinochkaa" target="_blank">
+        <img src="/images/twitter.png"></a>
+    </div>
+
+    <div class="icon">
+      <a href="http://instagram.com/alinochkaa" target="_blank">
+        <img src="/images/ig.png">
+      </a>
+    </div>
+
+    <div class="icon">
+      <a href="http://flickr.com/photos/malinerr/" target="_blank">
+        <img src="/images/flickr.png">
+      </a>
+    </div>
+  </div>
 
 
 </div>
@@ -77,6 +110,13 @@
       $('header').removeClass(hide)
 
     }
+  });
+
+  $('nav a').click(function(){
+    $('html, body').animate({
+      scrollTop: $( $(this).attr('href') ).offset().top
+    }, 1000);
+    return false;
   });
 </script>
 
