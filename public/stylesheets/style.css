@@ -1,5 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Josefin+Slab);
-@import url(https://fonts.googleapis.com/css?family=Anaheim);
 @import url(https://fonts.googleapis.com/css?family=Lato:100);
 
 html, body {
@@ -62,7 +60,7 @@ header {
 }
 
 .nav a {
-    padding: 0 10%;
+    padding: 0 8%;
     text-decoration: none;
     font-size: 1.4em;
     color: #999;
@@ -98,18 +96,18 @@ header {
     top: 0;
 }
 
-.about-box {
+#about-box {
     width: 550px;
     margin: auto;
     text-align: center;
 }
 
-.about-box a {
+#about-box a {
     text-decoration: dashed;
     color: #f66666;
 }
 
-.about-box a:hover {
+#about-box a:hover {
     text-decoration: dotted;
     color: #999;
 }
@@ -135,7 +133,7 @@ header {
     width: 100%;
 }
 
-.work-box, .blog-box, .contact-box {
+#work-box, #blog-box, #contact-box {
     background: rgba(255,255,255,0.9);
 }
 
@@ -148,7 +146,7 @@ header {
     position: relative;
 }
 
-.work-box {
+#work-box {
     height: 400px;
     /*width: 100%;*/
     padding: 90px 30px 30px;
@@ -165,7 +163,7 @@ header {
     position: relative;
 }
 
-.blog-box {
+#blog-box {
     height: 300px;
     padding: 90px 30px 30px;
 }
@@ -179,7 +177,7 @@ header {
     position: relative;
 }
 
-.contact-box {
+#contact-box {
     margin: auto;
     height: 175px;
     width: 400px;
@@ -227,7 +225,7 @@ header {
 
 
 
-.work-box h1, .contact-box h1 {
+#work-box h1, #contact-box h1 {
     margin-top: -70px;
 }
 .project-kick, .cgn, .interior {
@@ -265,15 +263,14 @@ header {
 
 #footer {
     background-color: #111;
-    height: 90px;
+    height: 60px;
     text-align: center;
     z-index: 99999;
 }
 
 #footer p{
-    padding-top: 30px;
+    padding-top: 20px;
     padding-left: 40px;
-    font-family: 'Anaheim',sans-serif;
     color: #999;
     font-size: 1.2em;
 }
