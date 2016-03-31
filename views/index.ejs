@@ -1,4 +1,8 @@
+
+<link rel="stylesheet" href="/stylesheets/normalize.css">
+<link rel="stylesheet" href="/stylesheets/skeleton.css">
 <link rel="stylesheet" href="/stylesheets/style.css">
+
 
 <header>
   <div id="homeimage">
@@ -95,20 +99,20 @@
 
 
 <script>
-  var  mn = $(".nav");
-  mns = "nav-scrolled";
-  hdr = $('header').height();
-  hide = "hideheader";
-
-  $(window).scroll(function() {
-    if( $(this).scrollTop() > hdr ) {
-      mn.addClass(mns);
-      $('header').addClass(hide)
-    } else {
-      mn.removeClass(mns);
-      $('header').removeClass(hide)
-    }
-  });
+//  var  mn = $(".nav");
+//  mns = "nav-scrolled";
+//  hdr = $('header').height();
+//  hide = "hideheader";
+//
+//  $(window).scroll(function() {
+//    if( $(this).scrollTop() > hdr ) {
+//      mn.addClass(mns);
+//      $('header').addClass(hide)
+//    } else {
+//      mn.removeClass(mns);
+//      $('header').removeClass(hide)
+//    }
+//  });
 
   $('nav a').click(function(){
     $('html, body').animate({
