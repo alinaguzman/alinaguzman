@@ -45,6 +45,11 @@ Object.keys(db).forEach(function(modelName) {
   }
 });
 
+
+//db.Run.belongsTo(db.Activity, { foreignKey: 'id', targetKey: 'id'});
+//db.Run.hasOne(db.Activity, { foreignKey: 'id' });
+
+
 sequelize.sync();
 
 db.sequelize = sequelize;

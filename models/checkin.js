@@ -2,10 +2,12 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Checkin = sequelize.define("Checkin", {
-    data: DataTypes.TEXT,
-    sub_data: DataTypes.TEXT,
-    name: DataTypes.STRING,
-    category: DataTypes.STRING
+    id: {
+      primaryKey: true,
+      type: DataTypes.INTEGER,
+      autoIncrement: false
+    },
+    subdata: DataTypes.TEXT
   });
 
   return Checkin;

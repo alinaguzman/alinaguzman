@@ -2,10 +2,11 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Book = sequelize.define("Book", {
-    data: DataTypes.TEXT,
-    sub_data: DataTypes.TEXT,
-    name: DataTypes.STRING,
-    category: DataTypes.STRING,
+    id: {
+      primaryKey: true,
+      type: DataTypes.INTEGER,
+      autoIncrement: false
+    },
     length: DataTypes.STRING,
     author: DataTypes.STRING
   });

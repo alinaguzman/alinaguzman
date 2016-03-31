@@ -2,8 +2,11 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Citibike = sequelize.define("Citibike", {
-    data: DataTypes.TEXT,
-    sub_data: DataTypes.TEXT,
+    id: {
+      primaryKey: true,
+      type: DataTypes.INTEGER,
+      autoIncrement: false
+    },
     start: DataTypes.STRING,
     end: DataTypes.STRING,
     length: DataTypes.STRING
