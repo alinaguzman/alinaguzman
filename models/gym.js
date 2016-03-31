@@ -2,11 +2,18 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Gym = sequelize.define("Gym", {
-    data: DataTypes.TEXT,
-    sub_data: DataTypes.TEXT,
     studio: DataTypes.STRING,
-    category: DataTypes.STRING,
-    name: DataTypes.STRING
+  }, {
+    instanceMethods: {
+      getInfo: function(activity){
+        return {
+          studio: this.studio,
+          title: activity.title,
+          datetime: activity.datetime,
+          category: activity.category // type of workout class
+        };
+      }
+    }
   });
 
   return Gym;

@@ -10,6 +10,19 @@ module.exports = function(sequelize, DataTypes) {
     start: DataTypes.STRING,
     end: DataTypes.STRING,
     length: DataTypes.STRING
+  }, {
+    instanceMethods: {
+      getInfo: function(activity){
+        return {
+          length: this.length,
+          start: this.start,
+          end: this.end,
+          title: activity.title,
+          datetime: activity.datetime,
+          category: activity.category
+        };
+      }
+    }
   });
 
   return Citibike;

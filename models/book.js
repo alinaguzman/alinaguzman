@@ -16,8 +16,8 @@ module.exports = function(sequelize, DataTypes) {
           length: this.length,
           author: this.author,
           title: activity.title,
-          datetime: activity.datetime,
-          category: activity.category
+          datetime: activity.datetime, // date finished
+          category: activity.category  // genre
         };
       },
       getActivity: function(models, callback){

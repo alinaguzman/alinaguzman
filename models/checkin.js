@@ -7,8 +7,18 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       autoIncrement: false
     },
-    subdata: DataTypes.TEXT
+    subdata: DataTypes.TEXT // json from api
+  }, {
+    instanceMethods: {
+      getInfo: function(activity){
+        return {
+          subdata: this.subdata,
+          title: activity.title, // name of venue
+          datetime: activity.datetime, // date of checkin
+          category: activity.category //category of venue
+        };
+      }
+    }
   });
-
   return Checkin;
 };
