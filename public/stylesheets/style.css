@@ -31,68 +31,7 @@ h3 {
 header {
     background: url('../images/imagehome.jpg') no-repeat center center;
     background-size: cover;
-}
-.nav,
-.main {
-    /*position: relative;*/
-}
-.nav {
-    background: #323232;
-    height: 70px;
-    z-index: 150;
-}
-
-.nav div {
-    padding-top: 1%;
-}
-
-.nav a {
-    padding: 0 8%;
-    text-decoration: none;
-    font-size: 1.4em;
-    color: #999;
-}
-
-.nav a:hover {
-    color: #f66666;
-}
-
-.nav-scrolled {
-    position: fixed;
-    width: 100%;
-    top: 0;
-}
-
-.hideheader {
-    display: none;
-}
-
-.main {
-    background: #323232;
-    color: #999;
-    text-align: center;
-    height: 20%;
-}
-
-.overlay {
-    background: rgba(0,0,0,0.65);
-    height: 100%;
-    position: relative;
-}
-
-#about-box {
-    width: 45%;
-    margin: auto;
-}
-
-#about-box a {
-    text-decoration: dashed;
-    color: #f66666;
-}
-
-#about-box a:hover {
-    text-decoration: dotted;
-    color: #999;
+    background-attachment: fixed;
 }
 
 .home-box {
@@ -104,7 +43,6 @@ header {
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%)
 }
-
 
 .home-box h1 {
     z-index: -1;
@@ -118,6 +56,69 @@ header {
     font-size: 2em;
 }
 
+.nav {
+    background: #323232;
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    z-index: 150;
+    position: fixed;
+    top: 0;
+}
+
+.nav a {
+    padding: 0 8%;
+    text-decoration: none;
+    font-size: 1.4em;
+    color: #999;
+}
+
+.nav a:hover {
+    color: #f66666;
+}
+
+.overlay {
+    background: rgba(0,0,0,0.65);
+    height: 100%;
+    position: relative;
+}
+
+.main {
+    padding-top: 3%;
+    background: #323232;
+    color: #999;
+    text-align: center;
+    height: 25%;
+    position: relative;
+}
+
+#about-box {
+    width: 45%;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%)
+}
+
+#about-box p {
+    margin: 0;
+}
+
+#about-box a {
+    text-decoration: dashed;
+    color: #f66666;
+}
+
+#about-box a:hover {
+    text-decoration: dotted;
+    color: #999;
+}
+
+
+
 #work, #blog, #contact {
     height: 70vh;
     width: 100%;
@@ -130,22 +131,25 @@ header {
 #work {
     background: url('../images/imagework.jpg') no-repeat center center;
     background-size: cover;
+    background-attachment: fixed;
     position: relative;
 }
 
 #blog {
     background: url('../images/imageblog.jpg') no-repeat center center;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 #blog-box {
-    height: 200px;
-    padding: 80px 30px 30px;
+    height: 180px;
+    padding: 40px;
 }
 
 #contact {
     background: url('../images/imagecontact.jpg') no-repeat center center;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 #contact-box {
