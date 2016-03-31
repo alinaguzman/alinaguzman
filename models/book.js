@@ -9,6 +9,24 @@ module.exports = function(sequelize, DataTypes) {
     },
     length: DataTypes.STRING,
     author: DataTypes.STRING
+  }, {
+    instanceMethods: {
+      getInfo: function(activity){
+        return {
+          length: this.length,
+          author: this.author,
+          title: activity.title,
+          datetime: activity.datetime,
+          category: activity.category
+        };
+      },
+      getActivity: function(models, callback){
+        models.Activity.findById(this.id)
+          .then(function(activity){
+            return callback(activity)
+          });
+      }
+    }
   });
 
   return Book;
