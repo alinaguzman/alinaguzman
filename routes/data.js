@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var models = require("../models");
+//var run_info = require("../viewmodels/run_info.js")
 
 if(!process.env.FSCLIENTID){
   var config = require(__dirname + '/../config/api.js');
@@ -13,6 +14,28 @@ var foursquareConfig = {
     'redirectUrl': process.env.FSREDIRECTURL
   }
 };
+
+// returns combined Activity & Table model info
+function returnInfo(id, callback) {
+  models.Activity.findById(id)
+    .then(function(activity){
+      var info = {
+        'Runs': function() {
+          models.Run.findById(id)
+            .then(function(run) {
+              return callback(run.getInfo(activity));
+            });
+        },
+        'Books': function() {
+          models.Book.findById(id)
+            .then(function(book) {
+              return callback(book.getInfo(activity));
+            });
+        }
+      };
+      return (info[activity.type]());
+    });
+}
 
 var foursquare = require('node-foursquare')(foursquareConfig);
 var foursquareAccessToken = process.env.FSACCESSTOKEN;
@@ -28,7 +51,6 @@ router.get('/new', function(req, res, next) {
 router.post("/new", function(req, res) {
   //console.log(req.body);
   var table = req.body.table_type;
-
 });
 
 router.post("/Books/new", function(req, res) {
@@ -119,15 +141,81 @@ router.post("/Netflixes/new", function(req, res) {
     })
 });
 
-router.post("/Run/new", function(req, res) {
-  var json_object = JSON.stringify(req.body);
+router.get("/Runs", function(req, res) {
 
-  models.Run.findOrCreate({where: { data: json_object,sub_data:json_object , title: req.body.title, distance: req.body.distance, pace: req.body.pace, time: req.body.time, race: req.body.race}})
-    .spread(function(data, created) {
-      if(created){
-        res.redirect('back')
-      }
+  try {
+    models.Activity.findAll({ where:
+    {
+      type: "Runs"
+    }
+    }).then(function(runs) {
+      res.json(runs)
     })
+  }
+
+  catch(err) {
+    console.log("error: ", err)
+  }
+});
+
+router.get("/Runs/:id", function(req, res){
+  returnInfo(req.params.id, function(response){
+    res.json(response)
+  });
+
+  // gets activity for the run
+  //models.Run.findById(req.params.id)
+  //  .then(function(run){
+  //    run.getActivity(models, function(activity){
+  //      res.json(activity)
+  //    })
+  //  })
+});
+
+router.get("/Books/:id", function(req, res){
+  returnInfo(req.params.id, function(response){
+    res.json(response)
+  });
+});
+
+
+router.post("/Runs/new", function(req, res) {
+  var json_object = JSON.stringify(req.body);
+  var activityId;
+
+  try {
+    models.Activity.findOrCreate({
+      where: {
+        title: req.body.title,
+        type: req.body.table_type,
+        data: json_object,
+        datetime: req.body.datetime
+      }
+    }).spread(function(data, created){
+      if(created){
+        activityId = data.id;
+        models.Run.findOrCreate({where: {
+          id: activityId,
+          distance: req.body.distance,
+          pace: req.body.pace,
+          time: req.body.time,
+          race: req.body.race
+        }
+        })
+          .spread(function(run, created) {
+            if(created){
+              res.redirect('back')
+            } else {
+              console.log("did not save run");
+            }
+          })
+      } else {
+        console.log("did not create activity")
+      }
+    });  }
+  catch(err) {
+    console.log("error: ", err)
+  }
 });
 
 router.post("/Sales/new", function(req, res) {
