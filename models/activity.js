@@ -5,7 +5,6 @@ module.exports = function(sequelize, DataTypes){
     title: DataTypes.STRING,
     type: DataTypes.STRING,
     category: DataTypes.STRING,
-    data: DataTypes.TEXT,
     datetime: DataTypes.STRING
   });
 

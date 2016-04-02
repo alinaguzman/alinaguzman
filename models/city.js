@@ -3,7 +3,7 @@
 module.exports = function(sequelize, DataTypes) {
   var City = sequelize.define("City", {
     state: DataTypes.STRING,
-    length: DataTypes.STRING
+    length: DataTypes.STRING // in days
   }, {
     instanceMethods: {
       getInfo: function(activity){

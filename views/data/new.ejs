@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="/stylesheets/normalize.css">
 <link rel="stylesheet" href="/stylesheets/skeleton.css">
 
-
 <form action="" method="post" class="data_form">
   <fieldset class="show">
     <label for="name">Select Activity:</label>
@@ -15,19 +14,22 @@
       <option value="">Select</option>
       <% tables.forEach(function(table){ %>
       <option value="<%= table %>"><%= table %></option>
-      <% }) %>
+      <% }); %>
     </select>
   </fieldset>
-  <fieldset class="Books">
+
+  <fieldset class="activity models">
     <label for="datetime">Datetime:</label>
-    <input type="text" name="datetime" />
+    <input type="datetime-local" name="datetime" />
 
     <label for="title">Title:</label>
     <input type="text" name="title" />
 
     <label for="category">Category:</label>
     <input type="text" name="category" />
+  </fieldset>
 
+  <fieldset class="Books models">
     <label for="author">Author:</label>
     <input type="text" name="author" />
 
@@ -35,15 +37,11 @@
     <input type="text" name="length" />
   </fieldset>
 
-  <fieldset class="Checkins">
-    <label for="name">Name:</label>
-    <input type="text" name="name" />
-
-    <label for="category">Category:</label>
-    <input type="text" name="category" />
+  <fieldset class="Checkins models">
+    <h3>Not applicable</h3>
   </fieldset>
 
-  <fieldset class="Citibikes">
+  <fieldset class="Citibikes models">
     <label for="start">Start:</label>
     <input type="text" name="start" />
 
@@ -54,40 +52,25 @@
     <input type="text" name="length" />
   </fieldset>
 
-  <fieldset class="Cities">
-    <label for="name">Name:</label>
-    <input type="text" name="name" />
-
+  <fieldset class="Cities models">
     <label for="state">State:</label>
     <input type="text" name="state" />
 
-    <label for="length">Length:</label>
+    <label for="length">Length (days):</label>
     <input type="text" name="length" />
   </fieldset>
 
-  <fieldset class="Coffees">
-    <label for="name">Name:</label>
-    <input type="text" name="name" />
-
-    <label for="time">Time:</label>
-    <input type="text" name="time" />
-
-    <label for="length">Length:</label>
+  <fieldset class="Coffees models">
+    <label for="length">Length (minutes):</label>
     <input type="text" name="length" />
   </fieldset>
 
-  <fieldset class="Gyms">
-    <label for="name">Name:</label>
-    <input type="text" name="name" />
-
-    <label for="category">Category:</label>
-    <input type="text" name="category" />
-
+  <fieldset class="Gyms models">
     <label for="studio">Studio:</label>
     <input type="text" name="studio" />
   </fieldset>
 
-  <fieldset class="Flights">
+  <fieldset class="Flights models">
     <label for="airline">Airline:</label>
     <input type="text" name="airline" />
 
@@ -97,22 +80,19 @@
     <label for="depart">Depart:</label>
     <input type="text" name="depart" />
 
-    <label for="length">Length:</label>
+    <label for="length">Length (hours):</label>
     <input type="text" name="length" />
 
     <label for="price">Price:</label>
     <input type="text" name="price" />
   </fieldset>
 
-  <fieldset class="Mta">
+  <fieldset class="Mta models">
     <label for="price">Price:</label>
     <input type="text" name="price" />
   </fieldset>
 
-  <fieldset class="Netflixes">
-    <label for="title">Title:</label>
-    <input type="text" name="title" />
-
+  <fieldset class="Netflixes models">
     <label for="show">Show:</label>
     <input type="text" name="show" />
 
@@ -121,15 +101,9 @@
 
     <label for="length">Length:</label>
     <input type="text" name="length" />
-
-    <label for="category">Category:</label>
-    <input type="text" name="category" />
   </fieldset>
 
-  <fieldset class="Runs">
-    <label for="title">Title:</label>
-    <input type="text" name="title" />
-
+  <fieldset class="Runs models">
     <label for="distance">Distance:</label>
     <input type="text" name="distance" />
 
@@ -141,15 +115,9 @@
 
     <label for="race">Race:</label>
     <input type="text" name="race" />
-
-    <label for="datetime">Datetime:</label>
-    <input type="text" name="datetime" />
   </fieldset>
 
-  <fieldset class="Sales">
-    <label for="title">Title:</label>
-    <input type="text" name="title" />
-
+  <fieldset class="Sales models">
     <label for="app">App:</label>
     <input type="text" name="app" />
 
@@ -157,7 +125,12 @@
     <input type="text" name="price" />
   </fieldset>
 
-  <fieldset class="Ubers">
+  <fieldset class="Seamlesses models">
+    <label for="price">Price:</label>
+    <input type="text" name="price" />
+  </fieldset>
+
+  <fieldset class="Ubers models">
 
     <label for="start">Start:</label>
     <input type="text" name="start" />
@@ -179,12 +152,12 @@
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
 <script>
-  $(".Books,.Checkins,.Citibikes,.Cities,.Coffees,.Flights,.Mta,.Netflixes,.Runs,.Sales,.Ubers,.Gyms").hide();
+  $(".models").hide();
   $(".dynamic").on("change", function() {
     var table = $("." + $(this).val());
     $(".data_form").attr("action", "/data/" + $(this).val() + "/new");
     table.siblings().hide();
-    $(".show").show();
+    $(".show, .activity").show();
     table.show();
   });
 
