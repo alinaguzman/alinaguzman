@@ -4,11 +4,15 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var env       = process.env.NODE_ENV || "development";
+var env = process.env.NODE_ENV || "development";
+var debug = require('debug')('app4');
+var passport = require('passport');
+var session = require('express-session');
+
+// routes
 var routes = require('./routes/index');
 var data = require('./routes/data');
-var debug = require('debug')('app4');
-
+var users = require('./routes/users');
 
 var pg = require('pg');
 var conString = process.env.DATABASE_URL;
@@ -26,7 +30,6 @@ pg.connect(conString, function(err, client, done) {
   client.query('SELECT $1::int AS number', ['1'], function(err, result) {
     //call `done()` to release the client back to the pool
     done();
-
     if(err) {
       return console.error('error running query', err);
     }
@@ -36,8 +39,6 @@ pg.connect(conString, function(err, client, done) {
 });
 
 var app = express();
-
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -50,10 +51,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({ secret: process.env.AG_secret, key: 'user', cookie: { maxAge: 60000, secure: false }}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', routes);
 app.use('/data', data);
-
+app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -18,6 +18,17 @@ var foursquareConfig = {
 var foursquare = require('node-foursquare')(foursquareConfig);
 var foursquareAccessToken = process.env.FSACCESSTOKEN;
 
+// Applying middleware to all routes in this router
+router.use(function (req, res, next) {
+  if (req.isAuthenticated() && req.user.admin) {
+    console.log('authentication verified.');
+    return next();
+  } else {
+    console.log('error', 'You need to be logged in to do that!');
+    res.redirect('/');
+  }
+});
+
 // Renders form to add manual new activity + sub-table
 router.get('/new', function(req, res, next) {
   models.sequelize.query("SELECT table_name FROM information_schema.tables WHERE table_schema='public'AND table_type='BASE TABLE';").then(function(tables) {
