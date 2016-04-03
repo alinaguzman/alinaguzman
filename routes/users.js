@@ -3,6 +3,7 @@ var router = express.Router();
 var models = require("../models");
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var bcrypt = require('bcrypt');
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
@@ -25,31 +26,29 @@ passport.use(new LocalStrategy(
   }
 ));
 
-router.get('/signup', function(req, res) {
-  res.render('users/signup')
+router.get('/register', function(req, res) {
+  res.render('users/register')
 });
 
-router.post('/signup', function(req, res) {
+router.post('/register', function(req, res) {
   var username = req.body.username;
   var password = req.body.password;
   if (!username || !password) {
     req.flash('error', "Please, fill in all the fields.");
-    res.redirect('signup')
+    res.redirect('register')
   }
   var salt = bcrypt.genSaltSync(10);
-  var hashedPassword = bcrypt.hashSync(password, salt)
-
+  var hashedPassword = bcrypt.hashSync(password, salt);
   var newUser = {
     username: username,
     salt: salt,
     password: hashedPassword
   };
-
   models.User.create(newUser).then(function(user) {
-    res.redirect('/')
+    res.redirect('/users/login')
   }).catch(function(error) {
     req.flash('error', "Please, choose a different username.");
-    res.redirect('/signup')
+    res.redirect('/data/new')
   })
 });
 
