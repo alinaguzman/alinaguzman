@@ -150,7 +150,7 @@
   $(".models").hide();
   $(".dynamic").on("change", function() {
     var table = $("." + $(this).val());
-    $(".data_form").attr("action", "/data/" + $(this).val() + "/new");
+    $(".data_form").attr("action", "/data/models/" + $(this).val() + "/new");
     table.siblings().hide();
     $(".show, .activity").show();
     table.show();

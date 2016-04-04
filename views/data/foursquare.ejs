@@ -1,3 +1,9 @@
-<% checkins.forEach(function(checkin) { %>
-  <%= checkin.name %> prob empty<br/>
-<% }); %>
+<% include ../partials/form %>
+
+<pre>
+  <code>
+    <%-JSON.stringify(data, null, 4)%>
+  </code>
+</pre>
+
+<% include ../partials/formlink %>

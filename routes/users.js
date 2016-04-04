@@ -48,13 +48,13 @@ router.post('/register', function(req, res) {
     res.redirect('/users/login')
   }).catch(function(error) {
     req.flash('error', "Please, choose a different username.");
-    res.redirect('/data/new')
+    res.redirect('/data/models/new')
   })
 });
 
 router.post('/login', function (req, res, next) {
   passport.authenticate('local', {
-    successRedirect: '/data/new',
+    successRedirect: '/data/models/new',
     failureRedirect: '/',
     failureFlash: true
   })(req, res, next);
