@@ -52,15 +52,15 @@ router.get("/:activity", function(req, res) {
   }
   models.Activity.findAll({ where: searchBy })
     .then(function(data) {
-      res.json(data)
+      res.render('data/model', {data: data})
     })
 });
 
 // TODO account for searching for missing table ids
 // TODO ie Runs/5 but 5 is on hold for Books
 router.get("/:activity/:id", function(req, res){
-  utils.getInfo(req.params.id, req.params.activity, function(response){
-    res.json(response)
+  utils.getInfo(req.params.id, req.params.activity, function(data){
+    res.render('data/model', {data: data})
   });
 });
 

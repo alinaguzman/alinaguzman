@@ -9,18 +9,19 @@ module.exports = function(sequelize, DataTypes) {
       },
       distance: DataTypes.STRING,
       pace: DataTypes.STRING,
-      time: DataTypes.STRING
-
+      time: DataTypes.STRING,
+      link: DataTypes.STRING
     }, {
       instanceMethods: {
         getInfo: function(activity){
           var object = {
             id: this.id,
             activity_id: activity.id,
+            title: activity.title,
             distance: this.distance,
             time: this.time,
             pace: this.pace,
-            title: activity.title,
+            link: this.link, // strava or race result link
             datetime: activity.datetime,
             category: activity.category // race or training
           };
