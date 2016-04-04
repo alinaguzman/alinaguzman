@@ -9,8 +9,7 @@ module.exports = function(sequelize, DataTypes) {
       },
       distance: DataTypes.STRING,
       pace: DataTypes.STRING,
-      time: DataTypes.STRING,
-      race: DataTypes.BOOLEAN
+      time: DataTypes.STRING
 
     }, {
       instanceMethods: {
@@ -18,9 +17,10 @@ module.exports = function(sequelize, DataTypes) {
           var object = {
             distance: this.distance,
             time: this.time,
-            race: this.race,
+            pace: this.pace,
             title: activity.title,
-            datetime: activity.datetime
+            datetime: activity.datetime,
+            category: activity.category // race or training
           };
           return object
         },
