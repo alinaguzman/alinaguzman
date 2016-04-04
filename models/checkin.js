@@ -12,6 +12,8 @@ module.exports = function(sequelize, DataTypes) {
     instanceMethods: {
       getInfo: function(activity){
         return {
+          id: this.id,
+          activity_id: activity.id,
           subdata: this.subdata,
           title: activity.title, // name of venue
           datetime: activity.datetime, // date of checkin

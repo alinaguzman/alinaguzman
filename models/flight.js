@@ -2,6 +2,11 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Flight = sequelize.define("Flight", {
+    id: {
+      primaryKey: true,
+      type: DataTypes.INTEGER,
+      autoIncrement: false
+    },
     airline: DataTypes.STRING,
     depart: DataTypes.STRING,
     arrive: DataTypes.STRING,
@@ -11,6 +16,8 @@ module.exports = function(sequelize, DataTypes) {
     instanceMethods: {
       getInfo: function(activity){
         return {
+          id: this.id,
+          activity_id: activity.id,
           length: this.length,
           airline: this.airline,
           depart: this.depart,

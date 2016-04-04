@@ -14,6 +14,8 @@ module.exports = function(sequelize, DataTypes) {
     instanceMethods: {
       getInfo: function(activity){
         return {
+          id: this.id,
+          activity_id: activity.id,
           length: this.length,
           start: this.start,
           end: this.end,

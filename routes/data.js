@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var models = require("../models");
 var utils = require('../lib/utils.js');
+var env = process.env.NODE_ENV || "development";
 
 if(!process.env.FSCLIENTID){
   var config = require(__dirname + '/../config/api.js');
@@ -20,12 +21,16 @@ var foursquareAccessToken = process.env.FSACCESSTOKEN;
 
 // Applying middleware to all routes in this router
 router.use(function (req, res, next) {
-  if (req.isAuthenticated() && req.user.admin) {
-    console.log('authentication verified.');
-    return next();
+  if(env !== 'development'){
+    if (req.isAuthenticated() && req.user.admin) {
+      console.log('authentication verified.');
+      return next();
+    } else {
+      console.log('error', 'You need to be logged in to do that!');
+      res.redirect('/');
+    }
   } else {
-    console.log('error', 'You need to be logged in to do that!');
-    res.redirect('/');
+    return next();
   }
 });
 
@@ -41,13 +46,14 @@ router.get('/new', function(req, res, next) {
 
 // TODO still need to join with sub-table models
 router.get("/:activity", function(req, res) {
-  models.Activity.findAll({
-    where: {
-      type: req.params.activity
-    }
-  }).then(function(runs) {
-    res.json(runs)
-  })
+  var searchBy = {};
+  if(req.params.activity !== 'Activities'){
+    searchBy = { type: req.params.activity}
+  }
+  models.Activity.findAll({ where: searchBy })
+    .then(function(data) {
+      res.json(data)
+    })
 });
 
 // TODO account for searching for missing table ids
@@ -93,13 +99,13 @@ router.get('/foursquare', function(req, res, next) {
       } else {
         category = 'None'
       }
-      models.Checkin.findOrCreate({where: { data: JSON.stringify(checkin),sub_data:JSON.stringify(checkin) , name: checkin.venue.name, category: category}})
-        .spread(function(checkin, created) {
-          console.log(checkin.get({
-            plain: true
-          }));
-          console.log(created);
-        })
+      //models.Checkin.findOrCreate({where: { data: JSON.stringify(checkin),sub_data:JSON.stringify(checkin) , name: checkin.venue.name, category: category}})
+      //  .spread(function(checkin, created) {
+      //    console.log(checkin.get({
+      //      plain: true
+      //    }));
+      //    console.log(created);
+      //  })
     });
     //// Render the json out for now
     res.status('OK').json(checkins)

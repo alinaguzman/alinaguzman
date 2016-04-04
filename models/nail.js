@@ -13,6 +13,8 @@ module.exports = function(sequelize, DataTypes) {
     instanceMethods: {
       getInfo: function(activity){
         return {
+          id: this.id,
+          activity_id: activity.id,
           price: this.price,
           salon: this.salon,
           title: activity.title,

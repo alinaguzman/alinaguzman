@@ -2,6 +2,11 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Uber = sequelize.define("Uber", {
+    id: {
+      primaryKey: true,
+      type: DataTypes.INTEGER,
+      autoIncrement: false
+    },
     start: DataTypes.STRING,
     end: DataTypes.STRING,
     length: DataTypes.STRING,
@@ -10,6 +15,8 @@ module.exports = function(sequelize, DataTypes) {
     instanceMethods: {
       getInfo: function(activity){
         return {
+          id: this.id,
+          activity_id: activity.id,
           length: this.length, // total trip time
           start: this.start, // address
           end: this.end,
