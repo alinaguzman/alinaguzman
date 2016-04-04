@@ -32,7 +32,9 @@ router.use(function (req, res, next) {
 // Renders form to add manual new activity + sub-table
 router.get('/new', function(req, res, next) {
   models.sequelize.query("SELECT table_name FROM information_schema.tables WHERE table_schema='public'AND table_type='BASE TABLE';").then(function(tables) {
-    tables.splice(0, 1);
+    if(tables[0][0] == 'SequelizeMeta') {
+      tables.splice(0, 1);
+    }
     res.render('data/new', {tables: tables});
   })
 });
